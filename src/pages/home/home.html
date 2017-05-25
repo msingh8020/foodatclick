@@ -1,0 +1,40 @@
+<ion-header>  
+  <ion-navbar>
+    <ion-title>
+      <img src="images/logo.png" alt="logo">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>  
+	<h4 padding>
+	Hotels List
+	</h4>
+    <ion-list inset>
+        <ion-item>
+            <ion-label>Radius</ion-label>
+            <ion-input [(ngModel)]="username" type="text"></ion-input>
+        </ion-item>
+    </ion-list>
+    <div padding>
+        <button ion-button block (click)="getHotelList()">Search</button>
+		<!--button [navPush]="mapPage">Go To Map Page</button-->
+    </div>
+	<div *ngIf="foundRepos">
+    <ion-card *ngFor="let repo of foundRepos | async">
+        <ion-card-header>
+            {{ repo.name }}
+        </ion-card-header>
+        <ion-card-content>
+            {{ repo.description }}
+        </ion-card-content>
+    </ion-card>
+	</div>
+	<div *ngIf="!foundRepos">
+		<ion-card >
+			<ion-card-content>
+            Expand search radius. Nearest restaurant in X miles away.
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>
